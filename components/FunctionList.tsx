@@ -2,9 +2,9 @@ import { transactViewFunction } from "helpers";
 import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import { contractAbi, contractAddress } from "store/contractSlice";
-import { AbiObject } from "types";
+import { Abi } from "types";
 
-const FunctionList: FC<AbiObject> = ({ name, inputs, outputs, stateMutability }) => {
+const FunctionList: FC<Abi> = ({ name, inputs, outputs, stateMutability }) => {
   const [toggle, setToggle] = useState(false);
   const [paramInput, setInputs] = useState<{
     [key: string]: string;

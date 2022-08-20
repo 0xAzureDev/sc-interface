@@ -7,7 +7,7 @@ declare global {
 }
 
 export type Abi = {
-  constant: boolean;
+  constant: string;
   inputs: {
     name: string;
     type: string;
@@ -17,7 +17,7 @@ export type Abi = {
     name: string;
     type: string;
   }[];
-  payable: boolean;
+  payable: string;
   stateMutability: string;
   type: string;
 };
@@ -26,33 +26,3 @@ export type AbiInputs = Abi["inputs"];
 export type AbiOutputs = Abi["outputs"];
 
 export type AbiList = Abi[];
-
-export type AbiObject = {
-  payable: string;
-  stateMutability: string;
-  name: string;
-  type: string;
-  inputs: {
-    name: string;
-    type: string;
-  }[];
-  outputs: {
-    name: string;
-    type: string;
-  }[];
-};
-
-export type AbiObjectList = {
-  payable: string;
-  stateMutability: string;
-  name: string;
-  type: string;
-  inputs: {
-    name: string;
-    type: string;
-  }[];
-  outputs: {
-    name: string;
-    type: string;
-  }[];
-}[];

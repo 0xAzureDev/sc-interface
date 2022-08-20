@@ -2,12 +2,12 @@ import { parseAbi } from "helpers";
 import { FC, useEffect, useState } from "react";
 import { store } from "store/store";
 import FunctionList from "./FunctionList";
-import { AbiObject, AbiObjectList } from "types"
+import { Abi, AbiList } from "types"
 
 const ContractFunctions: FC = () => {
   let currentValue: string;
   const [abi, setAbi] = useState<
-    | AbiObjectList
+    | AbiList
     | null
   >();
 
@@ -40,7 +40,7 @@ const ContractFunctions: FC = () => {
         <h2 className="interface-container-abi-header">Functions</h2>
       </div>
       {abi &&
-        abi?.map((item: AbiObject) => {
+        abi?.map((item: Abi) => {
           return (
             <FunctionList
               name={item.name}

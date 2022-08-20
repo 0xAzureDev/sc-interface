@@ -1,6 +1,6 @@
 import { chainIds } from "constants/";
 import { ethers } from "ethers";
-import { AbiObject } from "types";
+import { Abi } from "types";
 
 export const formatAddress = (address: string) => {
   return `${address.slice(0, 6)}...${address.slice(address.length - 4, address.length)}`;
@@ -28,7 +28,7 @@ export const parseAbi = (abi: any) => {
   const jsonAbi = JSON.parse(abi);
 
   return jsonAbi
-    .map((x: AbiObject) => {
+    .map((x: Abi) => {
       return {
         name: x.name,
         type: x.type,
