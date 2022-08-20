@@ -28,22 +28,25 @@ export const parseAbi = (abi: any) => {
   const jsonAbi = JSON.parse(abi);
 
   return jsonAbi
-    .map(
-      (x: AbiObject) => {
-        return {
-          name: x.name,
-          type: x.type,
-          inputs: x.inputs,
-          outputs: x.outputs,
-          stateMutability: x.stateMutability,
-          payable: x.payable,
-        };
-      }
-    )
+    .map((x: AbiObject) => {
+      return {
+        name: x.name,
+        type: x.type,
+        inputs: x.inputs,
+        outputs: x.outputs,
+        stateMutability: x.stateMutability,
+        payable: x.payable,
+      };
+    })
     .filter((x: { type: string }) => x.type === "function");
 };
 
-export const transactViewFunction = async (name: string, abi: string, contract: string, params: string[]) => {
+export const transactViewFunction = async (
+  name: string,
+  abi: string,
+  contract: string,
+  params: string[]
+) => {
   try {
     const provider = new ethers.providers.Web3Provider(window.ethereum as any, "any");
     await provider.send("eth_requestAccounts", []);
@@ -55,8 +58,4 @@ export const transactViewFunction = async (name: string, abi: string, contract: 
   } catch (error) {
     alert(`Something went wrong connecting your wallet`);
   }
-}
-
-// export const transactNonpayableFunction = async (name: string, abi: string, contract: string, params: string[]) => {
-
-// }
+};
