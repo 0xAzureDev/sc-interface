@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
-import { chainIdToName, formatAddress } from "helpers";
+import { chainIdToName } from "helpers";
 import { FC, useEffect, useState } from "react";
+import ConnectButton from "./ConnectButton";
 
 const ConnectWallet: FC = () => {
   const [isMetamaskInstalled, setIsMetamaskInstalled] = useState<boolean>(true);
@@ -10,13 +11,14 @@ const ConnectWallet: FC = () => {
   useEffect(() => {
     if (!window.ethereum) return setIsMetamaskInstalled(false);
 
-    window.ethereum.on("chainChanged", () =>
-      setChainId(chainIdToName(window.ethereum.chainId ?? "0x1"))
-    );
+    window.ethereum.on("chainChanged", () => {
+      const chainIdName = chainIdToName(window.ethereum.chainId ?? "0x1");
+      setChainId(chainIdName);
+    });
   }, []);
 
-  async function connectWallet() {
-    if (!window.ethereum) return;
+  const connectWallet = async() => {
+    if (!window.ethereum) return setIsMetamaskInstalled(false);
 
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum as any);
@@ -25,38 +27,26 @@ const ConnectWallet: FC = () => {
       const address = await signer.getAddress();
 
       setAddress(address);
-      setChainId(chainIdToName(window.ethereum.chainId ?? "0x1"));
+
+      const chainIdName = chainIdToName(window.ethereum.chainId ?? "0x1");
+      setChainId(chainIdName);
     } catch (error) {
       console.error("Error connecting to wallet", error);
       alert(`Something went wrong connecting your wallet`);
     }
   }
 
-  function disconnectWallet() {
-    setAddress(undefined);
-  }
+  const disconnectWallet = () => setAddress(undefined);
 
   return (
     <>
-      {address && isMetamaskInstalled ? (
-        <>
-          <button className="header-chain">{chainId?.toUpperCase()}</button>
-          <button className="header-button" onClick={disconnectWallet}>
-            {formatAddress(address)}
-          </button>
-        </>
-      ) : isMetamaskInstalled ? (
-        <button className="header-button" onClick={connectWallet}>
-          Connect Wallet
-        </button>
-      ) : (
-        <button
-          className="header-button"
-          onClick={() => window.open("https://metamask.io/download/")}
-        >
-          Install Metamask
-        </button>
-      )}
+      <ConnectButton
+        address={address}
+        isMetamaskInstalled={isMetamaskInstalled}
+        chainId={chainId}
+        disconnectWallet={disconnectWallet}
+        connectWallet={connectWallet}
+      />
     </>
   );
 };
