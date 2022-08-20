@@ -17,7 +17,7 @@ const ConnectWallet: FC = () => {
     });
   }, []);
 
-  const connectWallet = async() => {
+  const connectWallet = async () => {
     if (!window.ethereum) return setIsMetamaskInstalled(false);
 
     try {
@@ -34,7 +34,7 @@ const ConnectWallet: FC = () => {
       console.error("Error connecting to wallet", error);
       alert(`Something went wrong connecting your wallet`);
     }
-  }
+  };
 
   const disconnectWallet = () => setAddress(undefined);
 

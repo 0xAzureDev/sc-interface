@@ -7,15 +7,20 @@ interface Props {
   chainId?: string;
   disconnectWallet: () => void;
   connectWallet: () => void;
-
 }
 
-const ConnectButton: FC<Props> = ({address, isMetamaskInstalled, chainId, disconnectWallet, connectWallet}) => {
+const ConnectButton: FC<Props> = ({
+  address,
+  isMetamaskInstalled,
+  chainId,
+  disconnectWallet,
+  connectWallet,
+}) => {
   return (
     <>
       {address && isMetamaskInstalled ? (
         <>
-          <button className="header-chain">{chainId?.toUpperCase() ?? 'UNKNOWN'}</button>
+          <button className="header-chain">{chainId?.toUpperCase() ?? "UNKNOWN"}</button>
           <button className="header-button" onClick={disconnectWallet}>
             {formatAddress(address)}
           </button>
