@@ -1,15 +1,12 @@
 import { parseAbi } from "helpers";
 import { FC, useEffect, useState } from "react";
 import { store } from "store/store";
+import { Abi, AbiList } from "types";
 import FunctionList from "./FunctionList";
-import { Abi, AbiList } from "types"
 
 const ContractFunctions: FC = () => {
   let currentValue: string;
-  const [abi, setAbi] = useState<
-    | AbiList
-    | null
-  >();
+  const [abi, setAbi] = useState<AbiList | null>();
 
   useEffect(() => {
     return store.subscribe(handleMessageChange);
@@ -49,6 +46,7 @@ const ContractFunctions: FC = () => {
               type={item.type}
               inputs={item.inputs}
               outputs={item.outputs}
+              constant={""}
             />
           );
         })}

@@ -1,15 +1,11 @@
 import { ethers } from "ethers";
 import { chainIdToName, formatAddress } from "helpers";
 import { FC, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setProvider, setSigner, setWalletAddress } from "store/contractSlice";
 
 const ConnectWallet: FC = () => {
   const [isMetamaskInstalled, setIsMetamaskInstalled] = useState<boolean>(true);
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [chainId, setChainId] = useState<string | undefined>(undefined);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!window.ethereum) return setIsMetamaskInstalled(false);
@@ -23,35 +19,17 @@ const ConnectWallet: FC = () => {
     if (!window.ethereum) return;
 
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum as any, "any");
+      const provider = new ethers.providers.Web3Provider(window.ethereum as any);
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner();
       const address = await signer.getAddress();
 
       setAddress(address);
       setChainId(chainIdToName(window.ethereum.chainId ?? "0x1"));
-      
-      dispatch(setProvider(provider));
-      dispatch(setSigner(signer));
-      dispatch(setWalletAddress(address));
     } catch (error) {
+      console.error("Error connecting to wallet", error);
       alert(`Something went wrong connecting your wallet`);
     }
-    // window.ethereum
-    //   .request({
-    //     method: "eth_requestAccounts",
-    //   })
-    //   .then(async (accounts: string[] | unknown) => {
-    //     if (!Array.isArray(accounts))
-    //       return alert(`Something went wrong with the received accounts!`);
-
-    //     setAddress(accounts[0]);
-    //     setChainId(chainIdToName(window.ethereum.chainId ?? "0x1"));
-
-    //   })
-    //   .catch((error) => {
-    //     alert(`Something went wrong: ${error}`);
-    //   });
   }
 
   function disconnectWallet() {
@@ -62,7 +40,7 @@ const ConnectWallet: FC = () => {
     <>
       {address && isMetamaskInstalled ? (
         <>
-          <button className="header-chain">{chainId?.toLocaleUpperCase()}</button>
+          <button className="header-chain">{chainId?.toUpperCase()}</button>
           <button className="header-button" onClick={disconnectWallet}>
             {formatAddress(address)}
           </button>
