@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Roboto Mono", monospace;
+  color: #fff;
+  background-color: #050505;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  margin-top: 1rem;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  letter-spacing: 2px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a2a2a;
+  padding: 10px 10rem;
+  margin-bottom: 20px;
+  border-bottom: #fff 6px solid;
+}
+
+.header-button {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 15rem;
+  height: 3rem;
+  background-color: #fff;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.header-button:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+.header-chain {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  width: auto;
+  height: 3rem;
+  background-color: #fff;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: #000;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.interface-container-abi-header {
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+}
+
+.abi {
+  width: auto;
+  margin-left: 1rem;
+  color: #efdd34;
+  background-color: #000;
+}
+
+.function {
+  width: auto;
+  color: #efdd34;
+  background-color: #000;
+}
+
+.header-file-input {
+  display: none;
+}
+
+.interface-container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10rem;
+}
+
+.interface-container {
+  padding: 0px 10rem;
+  margin-bottom: 20px;
+}
+
+.interface-text-abi {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.75rem;
+  width: 100%;
+  font-weight: 400;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  color: #fff;
+  background-color: #000;
+  resize: none;
+}
+
+.interface-text-abi::-webkit-scrollbar {
+  display: none;
+}
+
+.function-list-container {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: flex-start; */
+
+  padding: 10px 10rem;
+}
+
+.function-list-content-stats {
+  transition: all 0.3s ease;
+  padding-top: 20px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.75rem;
+  width: 100%;
+  font-weight: 400;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  color: #fff;
+  background-color: #000;
+  resize: none;
+  padding-bottom: 1px
+  /* float: left; */
+}
+
+.function-list-content-input {
+  transition: all 0.3s ease;
+  padding-top: 20px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1rem;
+  width: 70%;
+  font-weight: 400;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  color: #fff;
+  background-color: #000;
+  resize: none;
+  /* float: right; */
+}
+
+.function-list-input {
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+}
