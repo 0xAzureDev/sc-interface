@@ -6,7 +6,6 @@ const ContractInterface: FC = () => {
   const dispatch = useDispatch();
 
   function handleContractAddress(event: { target: { value: any } }) {
-    console.log("handleContractAddress event.target.value: ", event.target.value);
     dispatch(updateContractAddress(event.target.value));
   }
 
