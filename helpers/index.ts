@@ -10,6 +10,15 @@ export const chainIdToName = (chainId: string) => {
   return (chainIds as any)[parseInt(chainId, 16)] || "unknown";
 };
 
+export const prettyPrint = (text: string) => {
+  try {
+    var obj = JSON.parse(text);
+    return JSON.stringify(obj, undefined, 2);
+  } catch (error) {
+    return text;
+  }
+};
+
 export const validateAbi = (rawAbi: any) => {
   let abi: JSON;
 
