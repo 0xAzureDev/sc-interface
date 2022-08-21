@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { updateContractAddress } from "store/contractSlice";
 
 const ContractInterface: FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   function handleContractAddress(event: { target: { value: any } }) {
     console.log("handleContractAddress event.target.value: ", event.target.value);

@@ -5,7 +5,7 @@ interface Props {
   upload: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputButtons: FC<Props> = ({paste, upload}) => {
+const InputButtons: FC<Props> = ({ paste, upload }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (

@@ -5,7 +5,7 @@ interface Props {
   handleMessageChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const InputField: FC<Props> = ({message, handleMessageChange}) => {
+const InputField: FC<Props> = ({ message, handleMessageChange }) => {
   return (
     <>
       <div className="interface-container">

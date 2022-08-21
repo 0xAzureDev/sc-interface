@@ -47,14 +47,8 @@ const ABIInterface: FC = () => {
 
   return (
     <>
-      <InputButtons
-        paste={paste}
-        upload={upload}
-      />
-      <InputField
-        message={message}
-        handleMessageChange={handleMessageChange}
-      />
+      <InputButtons paste={paste} upload={upload} />
+      <InputField message={message} handleMessageChange={handleMessageChange} />
     </>
   );
 };
