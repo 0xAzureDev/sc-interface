@@ -1,5 +1,4 @@
 import { CHAIN_IDS } from "constants/";
-import { ethers } from "ethers";
 import { Abi } from "types";
 
 export const formatAddress = (address: string) => {
@@ -49,26 +48,8 @@ export const parseAbi = (abi: any) => {
         outputs: x.outputs,
         stateMutability: x.stateMutability,
         payable: x.payable,
+        constant: x.constant,
       };
     })
     .filter((x: { type: string }) => x.type === "function");
-};
-
-export const transactViewFunction = async (
-  name: string,
-  abi: string,
-  contract: string,
-  params: string[]
-) => {
-  try {
-    const provider = new ethers.providers.Web3Provider(window.ethereum as any, "any");
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
-
-    const contractInstance = new ethers.Contract(contract, abi, signer);
-
-    return await contractInstance[name](...params);
-  } catch (error) {
-    alert(`Something went wrong connecting your wallet`);
-  }
 };

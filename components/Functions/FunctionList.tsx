@@ -1,4 +1,4 @@
-import { transactViewFunction } from "helpers";
+import { transactViewFunction } from "helpers/Transact";
 import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import { contractAbi, contractAddress } from "store/contractSlice";
