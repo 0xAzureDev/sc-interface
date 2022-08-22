@@ -60,3 +60,7 @@ export interface FunctionInputInterface {
 export interface FunctionOutputInterface {
   outputs: AbiOutputs[];
 }
+
+export interface FunctionButtonInterface {
+  submitTx: () => void;
+}
