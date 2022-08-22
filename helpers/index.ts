@@ -1,4 +1,4 @@
-import { chainIds } from "constants/";
+import { CHAIN_IDS } from "constants/";
 import { ethers } from "ethers";
 import { Abi } from "types";
 
@@ -7,7 +7,7 @@ export const formatAddress = (address: string) => {
 };
 
 export const chainIdToName = (chainId: string) => {
-  return (chainIds as any)[parseInt(chainId, 16)] || "unknown";
+  return (CHAIN_IDS as any)[parseInt(chainId, 16)] || "unknown";
 };
 
 export const prettyPrint = (text: string) => {

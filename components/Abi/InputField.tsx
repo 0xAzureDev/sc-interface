@@ -1,11 +1,7 @@
 import { FC } from "react";
+import { InputFieldInterface } from "types";
 
-interface Props {
-  message: string;
-  handleMessageChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}
-
-const InputField: FC<Props> = ({ message, handleMessageChange }) => {
+const InputField: FC<InputFieldInterface> = ({ message, handleMessageChange }) => {
   return (
     <>
       <div className="interface-container">

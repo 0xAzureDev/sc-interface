@@ -1,16 +1,9 @@
 import { METAMASK_DOWNLOAD_LINK } from "constants/";
 import { formatAddress } from "helpers";
 import { FC } from "react";
+import { ConnectButtonInterface } from "types";
 
-interface Props {
-  address?: string;
-  isMetamaskInstalled: boolean;
-  chainId?: string;
-  disconnectWallet: () => void;
-  connectWallet: () => void;
-}
-
-const ConnectButton: FC<Props> = ({
+const ConnectButton: FC<ConnectButtonInterface> = ({
   address,
   isMetamaskInstalled,
   chainId,

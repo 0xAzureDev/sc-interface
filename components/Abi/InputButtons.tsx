@@ -1,11 +1,7 @@
 import { FC, useRef } from "react";
+import { InputButtonInterface } from "types";
 
-interface Props {
-  paste: () => void;
-  upload: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const InputButtons: FC<Props> = ({ paste, upload }) => {
+const InputButtons: FC<InputButtonInterface> = ({ paste, upload }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (

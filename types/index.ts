@@ -26,3 +26,21 @@ export type AbiInputs = Abi["inputs"];
 export type AbiOutputs = Abi["outputs"];
 
 export type AbiList = Abi[];
+
+export interface ConnectButtonInterface {
+  address?: string;
+  isMetamaskInstalled: boolean;
+  chainId?: string;
+  disconnectWallet: () => void;
+  connectWallet: () => void;
+}
+
+export interface InputFieldInterface {
+  message: string;
+  handleMessageChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+export interface InputButtonInterface {
+  paste: () => void;
+  upload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
