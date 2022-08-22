@@ -1,42 +1,50 @@
-import { ethers } from "ethers";
-import { chainIdToName, isInstalled } from "helpers";
-import { FC, useEffect, useState } from "react";
-import ConnectButton from "./ConnectButton";
+import { ethers } from 'ethers'
+import { chainIdToName, isInstalled } from 'helpers'
+import { FC, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setWalletAddress, walletAddress } from 'store/contractSlice'
+import ConnectButton from './ConnectButton'
 
 const ConnectWallet: FC = () => {
-  const [isMetamaskInstalled, setIsMetamaskInstalled] = useState<boolean>(true);
-  const [address, setAddress] = useState<string | undefined>(undefined);
-  const [chainId, setChainId] = useState<string | undefined>(undefined);
+  const [isMetamaskInstalled, setIsMetamaskInstalled] = useState<boolean>(true)
+  const [chainId, setChainId] = useState<string | undefined>(undefined)
+
+  const address = useSelector(walletAddress)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!isInstalled()) return setIsMetamaskInstalled(false);
+    if (!isInstalled()) return setIsMetamaskInstalled(false)
 
-    window.ethereum.on("chainChanged", () => {
-      const chainIdName = chainIdToName(window.ethereum.chainId ?? "0x1");
-      setChainId(chainIdName);
-    });
-  }, []);
+    window.ethereum.on('chainChanged', () => {
+      const chainIdName = chainIdToName(window.ethereum.chainId ?? '0x1')
+      setChainId(chainIdName)
+    })
+
+    window.ethereum.on('accountsChanged', (accounts: any) => {
+      if (accounts.length === 0) dispatch(setWalletAddress(undefined))
+    })
+  }, [])
 
   const connectWallet = async () => {
-    if (!isInstalled()) return setIsMetamaskInstalled(false);
+    if (!isInstalled()) return setIsMetamaskInstalled(false)
 
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum as any);
-      await provider.send("eth_requestAccounts", []);
-      const signer = provider.getSigner();
-      const address = await signer.getAddress();
+      const provider = new ethers.providers.Web3Provider(window.ethereum as any)
+      await provider.send('eth_requestAccounts', [])
+      const signer = provider.getSigner()
+      const address = await signer.getAddress()
 
-      setAddress(address);
+      dispatch(setWalletAddress(address))
 
-      const chainIdName = chainIdToName(window.ethereum.chainId ?? "0x1");
-      setChainId(chainIdName);
+      const chainIdName = chainIdToName(window.ethereum.chainId ?? '0x1')
+      setChainId(chainIdName)
     } catch (error) {
-      console.error("Error connecting to wallet", error);
-      alert(`Something went wrong connecting your wallet`);
+      console.error('Error connecting to wallet', error)
+      alert(`Something went wrong connecting your wallet`)
     }
-  };
+  }
 
-  const disconnectWallet = () => setAddress(undefined);
+  const disconnectWallet = () => dispatch(setWalletAddress(undefined))
 
   return (
     <>
@@ -48,7 +56,7 @@ const ConnectWallet: FC = () => {
         connectWallet={connectWallet}
       />
     </>
-  );
-};
+  )
+}
 
-export default ConnectWallet;
+export default ConnectWallet
