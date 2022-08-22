@@ -22,8 +22,15 @@ export type Abi = {
   type: string;
 };
 
-export type AbiInputs = Abi["inputs"];
-export type AbiOutputs = Abi["outputs"];
+export type AbiInputs = {
+  name: string;
+  type: string;
+};
+
+export type AbiOutputs = {
+  name: string;
+  type: string;
+};
 
 export type AbiList = Abi[];
 
@@ -43,4 +50,13 @@ export interface InputFieldInterface {
 export interface InputButtonInterface {
   paste: () => void;
   upload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface FunctionInputInterface {
+  inputs: AbiInputs[];
+  handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface FunctionOutputInterface {
+  outputs: AbiOutputs[];
 }
