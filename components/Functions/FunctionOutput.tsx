@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { AbiOutputs, FunctionOutputInterface } from "types";
 
-
 const FunctionOutput: FC<FunctionOutputInterface> = ({ outputs }) => {
   return (
     <>

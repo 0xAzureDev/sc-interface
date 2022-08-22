@@ -21,7 +21,7 @@ export const prettyPrint = (text: string) => {
 
 export const isInstalled = () => {
   return window.ethereum;
-}
+};
 
 export const validateAbi = (rawAbi: any) => {
   let abi: JSON;

@@ -24,10 +24,7 @@ const ConnectButton: FC<ConnectButtonInterface> = ({
           Connect Wallet
         </button>
       ) : (
-        <button
-          className="header-button"
-          onClick={() => window.open(METAMASK_DOWNLOAD_LINK)}
-        >
+        <button className="header-button" onClick={() => window.open(METAMASK_DOWNLOAD_LINK)}>
           Install Metamask
         </button>
       )}

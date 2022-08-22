@@ -24,7 +24,7 @@ const ABIInterface: FC = () => {
       console.error("Failed to read clipboard contents: ", error);
       alert("Pasting from clipboard is not supported on Firefox browsers.");
     }
-  }
+  };
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(prettyPrint(event.target.value));
@@ -43,7 +43,7 @@ const ABIInterface: FC = () => {
         dispatch(updateContractAbi(reader.result as string));
       };
     } catch (_) {}
-  }
+  };
 
   return (
     <>
