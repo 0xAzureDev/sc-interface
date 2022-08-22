@@ -5,7 +5,7 @@ import { updateContractAddress } from "store/contractSlice";
 const ContractInterface: FC = () => {
   const dispatch = useDispatch();
 
-  function handleContractAddress(event: { target: { value: any } }) {
+  function handleContractAddress(event: React.ChangeEvent<HTMLInputElement> ) {
     dispatch(updateContractAddress(event.target.value));
   }
 
