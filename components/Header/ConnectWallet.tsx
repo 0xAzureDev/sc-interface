@@ -2,6 +2,8 @@ import { ethers } from 'ethers'
 import { chainIdToName, isInstalled } from 'helpers'
 import { FC, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { setWalletAddress, walletAddress } from 'store/contractSlice'
 import ConnectButton from './ConnectButton'
 
@@ -25,6 +27,19 @@ const ConnectWallet: FC = () => {
     })
   }, [])
 
+  const notifyError = (message: string) =>
+    toast(<p className="toast">{message}</p>, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      rtl: false,
+      pauseOnFocusLoss: true,
+      draggable: true,
+      pauseOnHover: true,
+      type: 'error',
+    })
+
   const connectWallet = async () => {
     if (!isInstalled()) return setIsMetamaskInstalled(false)
 
@@ -40,7 +55,7 @@ const ConnectWallet: FC = () => {
       setChainId(chainIdName)
     } catch (error) {
       console.error('Error connecting to wallet', error)
-      alert(`Something went wrong connecting your wallet`)
+      notifyError('Failed to connect wallet! Try again')
     }
   }
 
@@ -55,6 +70,7 @@ const ConnectWallet: FC = () => {
         disconnectWallet={disconnectWallet}
         connectWallet={connectWallet}
       />
+      <ToastContainer />
     </>
   )
 }

@@ -2,6 +2,8 @@ import { validateInput } from 'helpers'
 import { transactNonPayable, transactView } from 'helpers/Transact'
 import { FC, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { contractAbi, contractAddress } from 'store/contractSlice'
 import { Abi } from 'types'
 import FunctionButton from './FunctionButton'
@@ -17,6 +19,19 @@ const FunctionList: FC<Abi> = ({ name, inputs, outputs, stateMutability }) => {
 
   const abi = useSelector(contractAbi)
   const contract = useSelector(contractAddress)
+
+  const notifyError = (message: string) =>
+    toast(<p className="toast">{message}</p>, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      rtl: false,
+      pauseOnFocusLoss: true,
+      draggable: true,
+      pauseOnHover: true,
+      type: 'error',
+    })
 
   const submitTx = async () => {
     let parsedParams: string[] = []
@@ -35,25 +50,37 @@ const FunctionList: FC<Abi> = ({ name, inputs, outputs, stateMutability }) => {
     }
 
     if (!(inputs.length === Object.keys(paramInput ?? 0).length))
-      return alert('Ensure that all input fields are filled')
+      return notifyError('Ensure that all input fields are filled')
     if (!(parsedParams.length === inputs.length))
-      return alert(
+      return notifyError(
         'Input field type is not valid, please double check your inputs',
       )
-    if (!abi) return alert('No ABI found')
-    if (!contract) return alert('No contract address found')
+    if (!abi) return notifyError('No ABI found')
+    if (!contract) return notifyError('No contract address found')
 
     if (stateMutability === 'view') {
       const res = await transactView(name, abi, contract, parsedParams)
-      if (res) setResponse(res.toString())
+
+      if (res === 0)
+        return notifyError('Something went wrong transacting view function.')
+
+      setResponse(res.toString())
     } else if (stateMutability === 'nonpayable') {
       const res = await transactNonPayable(name, abi, contract, parsedParams)
-      if (res) setResponse(res.toString())
+
+      if (res === 0)
+        return notifyError(
+          'Something went wrong transacting nonpayable function.',
+        )
+
+      setResponse(res.toString())
     } else if (stateMutability === 'payable') {
       console.error('payable functions are not supported yet')
     } else {
-      alert('No contract selected')
+      notifyError('Something went wrong... Try again')
     }
+
+    return
   }
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {

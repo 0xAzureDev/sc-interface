@@ -42,7 +42,7 @@ export const transactView = async (
     return JSON.stringify(processed, null, 2)
   } catch (error) {
     console.error(error)
-    alert(`Something went wrong transacting view function.`)
+    return 0
   }
 }
 
@@ -69,6 +69,6 @@ export const transactNonPayable = async (
     return tx.hash
   } catch (error) {
     console.error(error)
-    alert(`Something went wrong transacting nonpayable function.`)
+    return 0
   }
 }
