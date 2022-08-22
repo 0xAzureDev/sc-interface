@@ -40,13 +40,14 @@ const ContractFunctions: FC = () => {
         abi?.map((item: Abi) => {
           return (
             <FunctionList
+              key={item.name}
               name={item.name}
               payable={item.payable}
               stateMutability={item.stateMutability}
               type={item.type}
               inputs={item.inputs}
               outputs={item.outputs}
-              constant={""}
+              constant={item.constant}
             />
           );
         })}
