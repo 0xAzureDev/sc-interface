@@ -17,7 +17,7 @@ const FunctionList: FC<Abi> = ({ name, inputs, outputs, stateMutability }) => {
   const abi = useSelector(contractAbi);
   const contract = useSelector(contractAddress);
 
-  async function submitTx() {
+  const submitTx = async () => {
     let parsedParams: string[] = [];
 
     if (paramInput) {
@@ -38,15 +38,15 @@ const FunctionList: FC<Abi> = ({ name, inputs, outputs, stateMutability }) => {
         // transactViewFunction(name);
       }
     }
-  }
+  };
 
-  function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setInputs({
       ...(paramInput as { [key: string]: string }),
       [name]: value,
     });
-  }
+  };
 
   return (
     <>

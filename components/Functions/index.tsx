@@ -12,7 +12,7 @@ const ContractFunctions: FC = () => {
     return store.subscribe(handleMessageChange);
   }, [abi]);
 
-  function handleMessageChange() {
+  const handleMessageChange = () => {
     let previousValue = currentValue;
     currentValue = store.getState().contract.contractAbi;
     setAbi(null);
@@ -29,7 +29,7 @@ const ContractFunctions: FC = () => {
 
       setAbi(data);
     }
-  }
+  };
 
   return (
     <>

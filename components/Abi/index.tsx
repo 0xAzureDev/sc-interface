@@ -9,7 +9,7 @@ const ABIInterface: FC = () => {
   const [message, setMessage] = useState("");
   const dispatch = useDispatch();
 
-  function paste() {
+  const paste = () => {
     try {
       navigator.clipboard
         .readText()
@@ -31,7 +31,7 @@ const ABIInterface: FC = () => {
     dispatch(updateContractAbi(event.target.value));
   };
 
-  function upload(event: React.ChangeEvent<HTMLInputElement>) {
+  const upload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
 
     const file = event.target.files[0];
