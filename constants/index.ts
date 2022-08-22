@@ -1,3 +1,5 @@
+export const METAMASK_DOWNLOAD_LINK = "https://metamask.io/download/";
+
 export const chainIds = {
   0: "kardia",
   1: "ethereum",

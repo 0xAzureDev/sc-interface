@@ -1,4 +1,5 @@
-import { transactViewFunction } from "helpers";
+import { METAMASK_DOWNLOAD_LINK } from "constants/";
+import { isInstalled, transactViewFunction } from "helpers";
 import { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import { contractAbi, contractAddress } from "store/contractSlice";
@@ -94,14 +95,25 @@ const FunctionList: FC<Abi> = ({ name, inputs, outputs, stateMutability }) => {
               );
             })}
             {response && <h2>Response: {response}</h2>}
-            <button
-              className="header-button function"
-              type="button"
-              style={{ marginBottom: "1rem", color: "#fff" }}
-              onClick={submitTx}
-            >
-              Submit
-            </button>
+            {isInstalled() ? (
+              <button
+                className="header-button function"
+                type="button"
+                style={{ marginBottom: "1rem", color: "#fff" }}
+                onClick={submitTx}
+              >
+                Submit
+              </button>
+            ) : (
+              <button
+                className="header-button function"
+                type="button"
+                style={{ marginBottom: "1rem", color: "#fff" }}
+                onClick={() => window.open(METAMASK_DOWNLOAD_LINK)}
+              >
+                Install Metamask
+              </button>
+            )}
           </div>
         )}
       </div>

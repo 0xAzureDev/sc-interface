@@ -1,3 +1,4 @@
+import { METAMASK_DOWNLOAD_LINK } from "constants/";
 import { formatAddress } from "helpers";
 import { FC } from "react";
 
@@ -32,7 +33,7 @@ const ConnectButton: FC<Props> = ({
       ) : (
         <button
           className="header-button"
-          onClick={() => window.open("https://metamask.io/download/")}
+          onClick={() => window.open(METAMASK_DOWNLOAD_LINK)}
         >
           Install Metamask
         </button>

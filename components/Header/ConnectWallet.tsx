@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { chainIdToName } from "helpers";
+import { chainIdToName, isInstalled } from "helpers";
 import { FC, useEffect, useState } from "react";
 import ConnectButton from "./ConnectButton";
 
@@ -9,7 +9,7 @@ const ConnectWallet: FC = () => {
   const [chainId, setChainId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    if (!window.ethereum) return setIsMetamaskInstalled(false);
+    if (!isInstalled()) return setIsMetamaskInstalled(false);
 
     window.ethereum.on("chainChanged", () => {
       const chainIdName = chainIdToName(window.ethereum.chainId ?? "0x1");
@@ -18,7 +18,7 @@ const ConnectWallet: FC = () => {
   }, []);
 
   const connectWallet = async () => {
-    if (!window.ethereum) return setIsMetamaskInstalled(false);
+    if (!isInstalled()) return setIsMetamaskInstalled(false);
 
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum as any);
