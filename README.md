@@ -8,6 +8,16 @@ An interface for interacting with EVM smart contracts.
 
 This Smart Contract interface is an all-in-one interface for executing smart contract functions without the need for a dedicated frontend. It's simple as A B C, just connect your wallet, paste the contract ABI and address and execute from a list of all the available contract functions.
 
+## Development Stack
+
+- [React](https://reactjs.org/docs/getting-started.html)
+- [Next.js](https://nextjs.org/docs)
+
+## Prerequisites
+
+- Node.js/NPM - You can use [NVM](https://github.com/nvm-sh/nvm) / [NVM for Windows](https://github.com/coreybutler/nvm-windows) to manage Node version installs (minimum `16.4.2`).
+- Yarn (optional)
+
 ## How to run locally
 
 You can run the app locally using:
